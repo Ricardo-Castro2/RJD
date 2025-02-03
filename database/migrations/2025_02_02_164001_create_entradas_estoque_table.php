@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('entradas_estoque', function (Blueprint $table) {
             $table->id();
+            $table->integer('quantidade');
+            $table->decimal('preco_compra',8,2);
+            $table->date('data_entrada');
+            
+            $table->unsignedBigInteger('livros_id');
+            $table->foreign('livros_id')
+                  ->references('id')
+                  ->on('livros')
+                  ->onDelete('cascade');
             $table->timestamps();
         });
     }

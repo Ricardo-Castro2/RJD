@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('vendas', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('users_id');
+            $table->foreign('users_id')
+                  ->references('id')
+                  ->on('users')
+                  ->onDelete('cascade');
+            $table->date('data_venda');
+
+            $table->decimal('valor_total',8,2);
             $table->timestamps();
         });
     }
