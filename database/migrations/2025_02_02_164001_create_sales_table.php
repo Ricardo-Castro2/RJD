@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('vendas', function (Blueprint $table) {
+        Schema::create('sales', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger('users_id');
@@ -19,9 +19,9 @@ return new class extends Migration
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
-            $table->date('data_venda');
+            $table->date('sale_date');
 
-            $table->decimal('valor_total',8,2);
+            $table->decimal('total_value',8,2);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('vendas');
+        Schema::dropIfExists('sales');
     }
 };

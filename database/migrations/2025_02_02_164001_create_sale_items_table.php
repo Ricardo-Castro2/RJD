@@ -11,10 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('autores', function (Blueprint $table) {
+        Schema::create('sale_items', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-                  
+
+            $table->unsignedBigInteger('sales_id');
+            $table->foreign('sales_id')
+                  ->references('id')
+                  ->on('sales')
+                  ->onDelete('cascade');
+
+            $table->decimal('punit_price',8,2);
+            $table->integer('amount');
+
             $table->timestamps();
         });
     }
@@ -24,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('autores');
+        Schema::dropIfExists('sale_items');
     }
 };

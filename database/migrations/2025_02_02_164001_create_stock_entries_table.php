@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('entradas_estoque', function (Blueprint $table) {
+        Schema::create('stock_entries', function (Blueprint $table) {
             $table->id();
-            $table->integer('quantidade');
-            $table->decimal('preco_compra',8,2);
-            $table->date('data_entrada');
+            $table->integer('amount');
+            $table->decimal('purchase_price',8,2);
+            $table->date('entry_date');
             
-            $table->unsignedBigInteger('livros_id');
-            $table->foreign('livros_id')
+            $table->unsignedBigInteger('books_id');
+            $table->foreign('books_id')
                   ->references('id')
-                  ->on('livros')
+                  ->on('books')
                   ->onDelete('cascade');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('entradas_estoque');
+        Schema::dropIfExists('stock_entries');
     }
 };

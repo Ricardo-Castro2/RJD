@@ -11,24 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('livros', function (Blueprint $table) {
+        Schema::create('books', function (Blueprint $table) {
             $table->id();
-            $table->string('nome');
-            $table->decimal('preco_venda',8,2);
-            $table->decimal('preco_compra',8,2);
-            $table->integer('quantidade');
+            $table->string('name');
+            $table->decimal('sale_price',8,2);
+            $table->decimal('purchase_price',8,2);
+            $table->integer('amount');
 
-            $table->unsignedBigInteger('editora_id');
-            $table->foreign('editora_id')
+            $table->unsignedBigInteger('publisher_id');
+            $table->foreign('publisher_id')
                   ->references('id')
-                  ->on('editoras')
+                  ->on('publishers')
                   ->onDelete('cascade');
 
 
-            $table->unsignedBigInteger('autores_id');
-            $table->foreign('autores_id')
+            $table->unsignedBigInteger('authors_id');
+            $table->foreign('authors_id')
                   ->references('id')
-                  ->on('autores')
+                  ->on('authors')
                   ->onDelete('cascade');
 
             $table->timestamps();
@@ -41,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('livros');
+        Schema::dropIfExists('books');
     }
 };

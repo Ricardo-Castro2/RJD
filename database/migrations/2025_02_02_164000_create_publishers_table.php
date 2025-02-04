@@ -11,17 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('itens_venda', function (Blueprint $table) {
+        Schema::create('publishers', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger('vendas_id');
-            $table->foreign('vendas_id')
-                  ->references('id')
-                  ->on('vendas')
-                  ->onDelete('cascade');
-
-            $table->decimal('preco_unitario',8,2);
-            $table->integer('quantidade');
+            $table->string('name');
 
             $table->timestamps();
         });
@@ -32,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('itens_venda');
+        Schema::dropIfExists('publishers');
     }
 };
