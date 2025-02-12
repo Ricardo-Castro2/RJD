@@ -16,13 +16,13 @@ return new class extends Migration
             $table->integer('amount');
             $table->decimal('purchase_price',8,2);
             $table->date('entry_date');
-            
-            $table->unsignedBigInteger('books_id');
-            $table->foreign('books_id')
+            $table->unsignedBigInteger('book_id');
+            $table->foreign('book_id')
                   ->references('id')
                   ->on('books')
                   ->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 

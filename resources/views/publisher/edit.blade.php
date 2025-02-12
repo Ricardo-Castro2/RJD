@@ -8,30 +8,14 @@
 </head>
 <body>
     
-    <a href="{{ route('user.index') }}"> listar </a><br>
-    <a href="{{ route('user.show',['user'=>$user->id]) }}">visualizar </a><br>
-    <h1>editar usuario </h1>
-    @if ($errors->any())
-        @foreach($errors->all() as $error)
-            <p style="color:#f00;">
-                {{ $error }}
-            </p>
-        @endforeach
-    @endif
 
-
-    <form action="{{ route('user-update',['user'=>$user->id]) }}" method="POST">
+    <form action="{{ route('publisher-update',['publisher'=>$publisher->id]) }}" method="POST">
         @csrf
         @method('PUT')
 
         <label>nome: </label>
-        <input type="text" name="name" placeholder="Nome completo"  value="{{old('name',$user->name)}}"><br>
+        <input type="text" name="name" placeholder="Nome completo"  value="{{old('name',$publisher->name)}}"><br>
 
-        <label>E-mail: </label>
-        <input type="email" name="email" placeholder="melhor email do usuario" value="{{old('email', $user->email)}}"><br>
-
-        <label>senha: </label>
-        <input type="password" name="password" placeholder="senha minimo 6 caracteris" value="{{old('password')}}"><br>
 
         
         <button type="submit">editar</button>

@@ -6,33 +6,37 @@
     <title>Document</title>
 </head>
 <body>
-    
-    
-    <a href="{{ route('user.create') }}"> criar  </a> 
+    <h1>criar </h1>
+    <a href="{{ route('publisher.create') }}"> criar editora </a> 
 
-    <h1>listar usuarios</h1>
+    
 
+
+    <h1>listar editoras</h1>
+    
     @if(session('success'))
         <p style="color:#086;">
             {{ session('success') }}
            
         </p>
     @endif
+    
+        @forelse ($publishers as $publisher)
+        ID: {{ $publisher->id }}<br>
+        Nome: {{ $publisher-> name }}<br>
 
-    {{--{{ dd($users)}}--}}
-
-    @forelse ($users as $user)
-        ID: {{ $user->id }}<br>
-        Nome: {{ $user-> name }}<br>
-        E-mail: {{ $user->email }}<br>
-        <a href="{{ route('user.show',['user' => $user->id]) }}"> visualizar</a><br>
-        <a href="{{ route('user.edit',['user' => $user->id]) }}"> editar</a><br>
-        <a href="{{ route('user.destroy',['user' => $user->id]) }}"> apagar</a><br>
-        <hr>
-    @empty
+        <a href="{{ route('publisher.show',['publisher' => $publisher->id]) }}"> visualizar</a><br>
         
-    @endforelse
+        <a href="{{ route('publisher.edit',['publisher' => $publisher->id]) }}"> editar</a><br>
 
+        <a href="{{ route('publisher.destroy',['publisher' => $publisher->id]) }}"> apagar</a><br>
+        
+
+        <hr>
+        @empty
+        
+        @endforelse
+    
 
 </body>
 </html>

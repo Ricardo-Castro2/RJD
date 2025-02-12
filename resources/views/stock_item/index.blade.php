@@ -11,8 +11,8 @@
     
 
     <h1>listar livros</h1>
-
-    <a href="{{ route('book.create') }}"> criar  </a> 
+{{--
+    <a href="{{ route('stock_items.create') }}"> criar  </a> 
     <br><hr>
 
     @if(session('success'))
@@ -37,16 +37,16 @@
         Autor: {{ $book->author ? $book->author->name : 'Não especificado' }}<br> <!-- Nome do autor -->
         <hr>
 
-        {{--
+        
         <a href="{{ route('book.show',['book' => $book->id]) }}"> visualizar</a><br>
         <a href="{{ route('book.edit',['book' => $book->id]) }}"> editar</a><br>
         <a href="{{ route('book.destroy',['book' => $book->id]) }}"> apagar</a><br>
-        --}}
+        
         
     @empty
         
     @endforelse
-    
+--}}
 
 
 </body>

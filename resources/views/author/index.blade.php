@@ -4,35 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .btn-custom {
+            background-color: #3490dc;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-block;
+            transition: background-color 0.3s;
+        }
+        .btn-custom:hover {
+            background-color: #2779bd;
+        }
+    </style>
 </head>
 <body>
-    
-    
-    <a href="{{ route('user.create') }}"> criar  </a> 
 
-    <h1>listar usuarios</h1>
+    <h1>Menu autores</h1>
+    
+    <a href="{{ route('author.create') }}" class="btn-custom">criar autor</a>
+
+    <a href="{{ route('author.index') }}">criar autor</a>
+    
+    <h1>listar autores</h1>
 
     @if(session('success'))
         <p style="color:#086;">
             {{ session('success') }}
-           
         </p>
     @endif
-
-    {{--{{ dd($users)}}--}}
-
-    @forelse ($users as $user)
-        ID: {{ $user->id }}<br>
-        Nome: {{ $user-> name }}<br>
-        E-mail: {{ $user->email }}<br>
-        <a href="{{ route('user.show',['user' => $user->id]) }}"> visualizar</a><br>
-        <a href="{{ route('user.edit',['user' => $user->id]) }}"> editar</a><br>
-        <a href="{{ route('user.destroy',['user' => $user->id]) }}"> apagar</a><br>
+  
+    
+    @forelse ($authors as $author)   
+        <br>
+        ID: {{ $author->id }}<br>
+        Nome: {{ $author-> name }}<br>
+        <a href="{{ route('author.show',['author' => $author->id]) }}"> visualizar autor</a><br>
+        <a href="{{ route('author.edit',['author' => $author->id]) }}"> editar autor </a><br>
+        <a href="{{ route('author.destroy',['author' => $author->id]) }}"> apagar autor</a><br>
         <hr>
     @empty
         
     @endforelse
-
+              
 
 </body>
 </html>

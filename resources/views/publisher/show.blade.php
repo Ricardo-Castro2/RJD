@@ -7,23 +7,17 @@
 </head>
 <body>
 
-    <a href="{{ route('user.index') }}"> listar </a><br>
-    <a href="{{ route('user.edit',['user'=>$user->id]) }}">editar </a><br>
+  
+    
 
-    <h1>visualizar usuario </h1>
-    @if(session('success'))
-        <p style="color:#086;">
-            {{ session('success') }}
-           
-        </p>
-    @endif
 
-    ID:{{ $user->id }}<br>
-    Nome: {{ $user->name }}<br>
-    E-mail: {{ $user->email }}<br>
-    Cadastrado: {{  \Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i:s') }}<br>
-    editado: {{  \Carbon\Carbon::parse($user->update_at)->format('d/m/Y H:i:s') }}<br>
-
+    ID:{{ $publisher->id }}<br>
+    Nome: {{ $publisher->name }}<br>
+    E-mail: {{ $publisher->email }}<br>
+    Cadastrado: {{  \Carbon\Carbon::parse($publisher->created_at)->format('d/m/Y H:i:s') }}<br>
+    editado: {{  \Carbon\Carbon::parse($publisher->update_at)->format('d/m/Y H:i:s') }}<br>
+    
+    <a href="{{ route('publisher.index') }}"> voltar </a><br>
     
 </body>
 </html>

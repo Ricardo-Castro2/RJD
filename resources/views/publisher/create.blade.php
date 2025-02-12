@@ -7,35 +7,19 @@
 </head>
 <body>
 
-    <a href="{{ route('user.index') }}"> listar </a> 
-    <p>criação livro</p>
 
-    @if ($errors->any())
-        
-        @foreach($errors->all() as $error)
-            <p style="color:#f00;">
-                {{ $error }}
-            </p>
-        @endforeach
-        
-    @endif
+    <p>criação editora</p>
 
 
-    <form action="{{ route('user-store') }}" method="POST">
+    <form action="{{ route('publisher-store') }}" method="POST">
         @csrf
         @method('POST')
 
         <label>nome: </label>
         <input type="text" name="name" placeholder="Nome completo"  value="{{old('name')}}"><br>
 
-        <label>E-mail: </label>
-        <input type="email" name="email" placeholder="melhor email do usuario" value="{{old('email')}}"><br>
-
-        <label>senha: </label>
-        <input type="password" name="password" placeholder="senha minimo 6 caracteris" value="{{old('password')}}"><br>
-
-        
         <button type="submit">Cadastrar livro</button>
+
     </form>
 
 
