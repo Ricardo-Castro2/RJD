@@ -5,7 +5,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MenuController; 
 use App\Http\Controllers\PublisherController; 
 use App\Http\Controllers\BookController; 
-use App\Http\Controllers\Stock_itemsController; 
+use App\Http\Controllers\SaleController; 
 #Menu
 Route::get('/', [MenuController::class, 'index'])->name('menu.index');
 
@@ -32,6 +32,6 @@ Route::get('/book', [BookController::class, 'index'])->name('book.index');
 Route::get('/create-book',[BookController::class,'create'])->name('book.create');
 Route::post('/store-book',[BookController::class,'store'])->name('book-store');
 
-Route::get('/estoque', [Stock_itemsController::class, 'index'])->name('stock_item.index');
+Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
 #Route::get('/create-book',[BookController::class,'create'])->name('book.create');
 #Route::post('/store-book',[BookController::class,'store'])->name('book-store');

@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Redirect;
+use App\Models\Sale;
+use App\Http\Requests\SaleRequest;
 use Illuminate\Http\Request;
 
-class Stock_itemsController
+class SaleController
 {
     public function index()
     {
@@ -12,7 +14,7 @@ class Stock_itemsController
         ##['books' => $books];
         #$books = Book::with(['publisher', 'author'])->get();
         #, compact('books')
-        return view('stock_item.index');
+        return view('sale.index');
     }
 
 
@@ -27,8 +29,9 @@ class Stock_itemsController
 
     public function create()
     {
-        $Books = Book::orderByDesc('id')->get();
-        return view('book.create',['books' => $books]);
+        $publishers = Publisher::orderByDesc('id')->get();
+        $authors = Author::orderByDesc('id')->get();
+        return view('book.create',['publishers' => $publishers, 'authors' => $authors]);
     }
 
 
@@ -37,16 +40,17 @@ class Stock_itemsController
         #$request->validated();
         #dd($request->all());
         $request->validate([
-            'books_id' => 'required|exists:books,id',   // Garante que a editora exista
+            'publishers_id' => 'required|exists:publishers,id', 
+            'authors_id' => 'required|exists:authors,id',   // Garante que a editora exista
         ]);
         
-        Stock_items::create([
+        Book::create([
             'name' => $request->name,
             'sale_price' => $request->sale_price,
             'purchase_price' => $request->purchase_price,
             'amount' => $request->amount,
-         
-            'book_id' => $request->books_id, 
+            'publisher_id' => $request->publishers_id,  // Garante que publisher_id seja passado
+            'author_id' => $request->authors_id, 
         ]);
         return redirect()->route('book.index')->with('success', 'livro criado com sucesso!');
     }
@@ -76,4 +80,5 @@ class Stock_itemsController
         $author->delete();
         return redirect()->route('author.index')->with('success', 'Autor deletado com sucesso!');
     }
+
 }
