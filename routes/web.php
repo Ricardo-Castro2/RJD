@@ -5,13 +5,10 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MenuController; 
 use App\Http\Controllers\PublisherController; 
 use App\Http\Controllers\BookController; 
-<<<<<<< HEAD
 use App\Http\Controllers\UserController; 
 use App\Http\Controllers\SaleController; 
 
-=======
-use App\Http\Controllers\SaleController; 
->>>>>>> 1944db98315db0b8916714091e0cbf63b9249b1c
+
 #Menu
 Route::get('/', [MenuController::class, 'index'])->name('menu.index');
 
@@ -38,7 +35,7 @@ Route::get('/book', [BookController::class, 'index'])->name('book.index');
 Route::get('/create-book',[BookController::class,'create'])->name('book.create');
 Route::post('/store-book',[BookController::class,'store'])->name('book-store');
 
-<<<<<<< HEAD
+
 #usuario
 Route::get('/user',[UserController::class,'index'])->name('user.index');
 Route::get('show-/{user}',[UserController::class,'show'])->name('user.show');
@@ -48,12 +45,18 @@ Route::get('/edit-user/{user}',[UserController::class,'edit'])->name('user.edit'
 Route::put('/update-user/{user}',[UserController::class, 'update'])->name('user-update');
 Route::get('/destroi-user/{user}',[UserController::class,'destroy'])->name('user.destroy');
 
-#venda
-Route::get('/venda', [SaleController::class, 'index'])->name('sale.index');
-Route::get('/create-sale',[SaleController::class,'create'])->name('sale.create');
-Route::post('/store-sale',[SaleController::class,'store'])->name('sale-store');
-=======
-Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
+
+
+#Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
 #Route::get('/create-book',[BookController::class,'create'])->name('book.create');
 #Route::post('/store-book',[BookController::class,'store'])->name('book-store');
->>>>>>> 1944db98315db0b8916714091e0cbf63b9249b1c
+
+
+
+Route::get('/comprar', [SaleController::class, 'shop'])->name('sale.shop');
+Route::get('/comprar/confirm', [SaleController::class, 'confirm'])->name('sale.confirm');
+Route::post('/comprar-finalizar', [SaleController::class, 'store'])->name('sale-store');
+
+
+
+
