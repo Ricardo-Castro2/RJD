@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-<<<<<<< HEAD
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -71,18 +70,18 @@ class SaleController
             'book_id' => 'required|exists:books,id',
             'quantity' => 'required|integer|min:1',
         ]);
-    
+
         // Pegando o livro pelo ID
         $book = Book::findOrFail($request->book_id);
-    
+
         // Verifica se há estoque suficiente
         if ($request->quantity > $book->amount) {
             return redirect()->back()->with('error', 'Quantidade maior que o estoque disponível!');
         }
-    
+
         // Calculando o valor total
         $totalValue = $book->sale_price * $request->quantity;
-    
+
         // Criando a venda
         $sale = Sale::create([
             'user_id' => $request->user_id,
@@ -90,29 +89,12 @@ class SaleController
             'quantity' => $request->quantity,
             'total_value' => $totalValue
         ]);
-    
+
         // Atualizando o estoque do livro
         $book->amount -= $request->quantity;
         $book->save();
 
-        return redirect()->route('sale.index')->with('success', 'livro criado com sucesso!');
-=======
-        #dd($request->all());
-        $request->validate([
-            'publishers_id' => 'required|exists:publishers,id', 
-            'authors_id' => 'required|exists:authors,id',   // Garante que a editora exista
-        ]);
-        
-        Book::create([
-            'name' => $request->name,
-            'sale_price' => $request->sale_price,
-            'purchase_price' => $request->purchase_price,
-            'amount' => $request->amount,
-            'publisher_id' => $request->publishers_id,  // Garante que publisher_id seja passado
-            'author_id' => $request->authors_id, 
-        ]);
-        return redirect()->route('book.index')->with('success', 'livro criado com sucesso!');
->>>>>>> 1944db98315db0b8916714091e0cbf63b9249b1c
+        return redirect()->route('sale.index')->with('success', 'Venda criada com sucesso!');
     }
 
 
@@ -122,7 +104,7 @@ class SaleController
         return view('author.edit', ['author' => $author]);
     }
 
-    public function update(AuthorRequest $request, Author $author)
+    public function update(SaleRequest $request, Author $author)
     {
         $request->validated();
         $author->update([
@@ -140,8 +122,4 @@ class SaleController
         $author->delete();
         return redirect()->route('author.index')->with('success', 'Autor deletado com sucesso!');
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 1944db98315db0b8916714091e0cbf63b9249b1c
 }
