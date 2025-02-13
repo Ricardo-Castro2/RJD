@@ -5,7 +5,9 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\MenuController; 
 use App\Http\Controllers\PublisherController; 
 use App\Http\Controllers\BookController; 
-use App\Http\Controllers\Stock_itemsController; 
+use App\Http\Controllers\UserController; 
+use App\Http\Controllers\SaleController; 
+
 #Menu
 Route::get('/', [MenuController::class, 'index'])->name('menu.index');
 
@@ -32,6 +34,16 @@ Route::get('/book', [BookController::class, 'index'])->name('book.index');
 Route::get('/create-book',[BookController::class,'create'])->name('book.create');
 Route::post('/store-book',[BookController::class,'store'])->name('book-store');
 
-Route::get('/estoque', [Stock_itemsController::class, 'index'])->name('stock_item.index');
-#Route::get('/create-book',[BookController::class,'create'])->name('book.create');
-#Route::post('/store-book',[BookController::class,'store'])->name('book-store');
+#usuario
+Route::get('/user',[UserController::class,'index'])->name('user.index');
+Route::get('show-/{user}',[UserController::class,'show'])->name('user.show');
+Route::get('/create-user',[UserController::class,'create'])->name('user.create');
+Route::post('/store-user',[UserController::class,'store'])->name('user-store');
+Route::get('/edit-user/{user}',[UserController::class,'edit'])->name('user.edit');
+Route::put('/update-user/{user}',[UserController::class, 'update'])->name('user-update');
+Route::get('/destroi-user/{user}',[UserController::class,'destroy'])->name('user.destroy');
+
+#venda
+Route::get('/venda', [SaleController::class, 'index'])->name('sale.index');
+Route::get('/create-sale',[SaleController::class,'create'])->name('sale.create');
+Route::post('/store-sale',[SaleController::class,'store'])->name('sale-store');

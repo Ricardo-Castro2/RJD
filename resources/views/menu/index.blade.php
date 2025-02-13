@@ -14,9 +14,10 @@
     <br>
     <a href="{{ route('book.index') }}"> livros </a> 
     <br>
-    <a href="{{ route('stock_item.index') }}"> estoque </a> 
+    <a href="{{ route('user.index') }}"> usuario </a> 
+    <br>
+    <a href="{{ route('sale.index') }}"> venda </a> 
 
 
-    
 </body>
 </html>

@@ -13,16 +13,23 @@ return new class extends Migration
     {
         Schema::create('sales', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger('users_id');
-            $table->foreign('users_id')
+            $table->integer('total value');
+            $table->decimal('quantity',8,2);
+            
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
                   ->references('id')
                   ->on('users')
                   ->onDelete('cascade');
-            $table->date('sale_date');
 
-            $table->decimal('total_value',8,2);
+            $table->unsignedBigInteger('book_id');
+            $table->foreign('book_id')
+                    ->references('id')
+                    ->on('books')
+                    ->onDelete('cascade');      
+
             $table->timestamps();
+
         });
     }
 

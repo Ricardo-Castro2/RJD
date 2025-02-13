@@ -11,10 +11,10 @@
     
 
     <h1>listar livros</h1>
-{{--
-    <a href="{{ route('stock_items.create') }}"> criar  </a> 
-    <br><hr>
 
+    <a href="{{ route('sale.create') }}"> criar  </a> 
+    <br><hr>
+{{--
     @if(session('success'))
         <p style="color:#086;">
             {{ session('success') }}
