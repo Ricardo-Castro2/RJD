@@ -15,15 +15,33 @@
 <body>
 
     <h2>Loja de Livros</h2>
-
+    <script>
+        function confirmarCompra(event) {
+            event.preventDefault(); // Impede o envio do formulário imediatamente
+            const confirma = confirm("Você tem certeza que deseja comprar este livro?");
+            
+            if (confirma) {
+                event.target.submit(); // Se o usuário confirmar, envia o formulário
+            }
+        }
+    
+        function atualizarTotal(input, preco, idTotal) {
+            const quantidade = input.value;
+            const total = preco * quantidade;
+            document.getElementById(idTotal).innerText = 'R$ ' + total.toFixed(2).replace('.', ',');
+        }
+    </script>
+    
+    <h2>Loja de Livros</h2>
+    
     @if(session('success'))
         <p style="color: green;">{{ session('success') }}</p>
     @endif
-
+    
     @if(session('error'))
         <p style="color: red;">{{ session('error') }}</p>
     @endif
-
+    
     <table border="1">
         <thead>
             <tr>
@@ -40,7 +58,7 @@
                     <td>{{ $book->name }}</td>
                     <td>R$ {{ number_format($book->sale_price, 2, ',', '.') }}</td>
                     <td>
-                        <form action="{{ route('sale.confirm') }}" method="GET">
+                        <form action="{{ route('sale.confirm') }}" method="GET" onsubmit="confirmarCompra(event)">
                             @csrf
                             <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                             <input type="hidden" name="book_id" value="{{ $book->id }}">
@@ -50,13 +68,11 @@
                     </td>
                     <td id="total-{{ $book->id }}">R$ 0,00</td>
                     <td>
-                            <button type="submit">Comprar</button>
-                        </form>
+                        <button type="submit">Comprar</button>
                     </td>
-                </tr>
+                </form>
+            </tr>
             @endforeach
         </tbody>
     </table>
-
-</body>
-</html>
+    

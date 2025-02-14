@@ -20,7 +20,7 @@
 
     <h1>Menu cliente</h1>
 
-    <a href="{{ route('sale.shop') }}"> shoping </a> 
+    <a href="{{ route('user.login') }}"> shoping </a> 
 
 
 </body>
