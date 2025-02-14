@@ -7,7 +7,7 @@ use App\Http\Controllers\PublisherController;
 use App\Http\Controllers\BookController; 
 use App\Http\Controllers\UserController; 
 use App\Http\Controllers\SaleController; 
-
+use App\Http\Controllers\AuthController; 
 
 #Menu
 Route::get('/', [MenuController::class, 'index'])->name('menu.index');
@@ -50,12 +50,21 @@ Route::get('/destroi-user/{user}',[UserController::class,'destroy'])->name('user
 #Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
 #Route::get('/create-book',[BookController::class,'create'])->name('book.create');
 #Route::post('/store-book',[BookController::class,'store'])->name('book-store');
+// Rota para exibir o formulário de login
 
 
+Route::get('/login',[AuthController::class,'login'])->name('user.login');
 
-Route::get('/comprar', [SaleController::class, 'shop'])->name('sale.shop');
+// Rota para processar o login
+Route::post('/login/logar', [AuthController::class, 'login_logar'])->name('login_logar');
+
+// Rota de logout
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/comprar', [SaleController::class, 'shop'])->name('sale.shop')->middleware('auth'); // Apenas a rota de compras precisa do middleware 'auth'
 Route::get('/comprar/confirm', [SaleController::class, 'confirm'])->name('sale.confirm');
 Route::post('/comprar-finalizar', [SaleController::class, 'store'])->name('sale-store');
+Route::get('/compra/{sale}/pix', [SaleController::class, 'gerarPix'])->name('sale.pix');
 
 
 

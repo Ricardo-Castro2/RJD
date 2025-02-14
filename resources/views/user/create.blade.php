@@ -6,9 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-
-    <a href="{{ route('user.index') }}"> listar </a> 
-    <p>criação livro</p>
+    <p>cadastro usuario</p>
 
     @if ($errors->any())
         
@@ -35,7 +33,7 @@
         <input type="password" name="password" placeholder="senha minimo 6 caracteris" value="{{old('password')}}"><br>
 
         
-        <button type="submit">Cadastrar livro</button>
+        <button type="submit">Cadastrar usuario</button>
     </form>
 
 
