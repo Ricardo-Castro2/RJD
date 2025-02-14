@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Publisher;
 use App\Models\Author;
+use App\Models\Sale;
+use App\Models\User;
 class Book extends Model
 {
     use HasFactory;
@@ -26,6 +28,14 @@ class Book extends Model
     public function author()
     {
         return $this->belongsTo(Author::class);
+    }
+    public function sale()
+    {
+        return $this->hasMany(Sale::class);
+    }
+    public function user()
+    {
+        return $this->hasMany(User::class);
     }
 
 }
