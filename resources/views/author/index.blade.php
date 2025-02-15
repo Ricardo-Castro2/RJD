@@ -26,7 +26,6 @@
     
     <a href="{{ route('author.create') }}" class="btn-custom">criar autor</a>
 
-    <a href="{{ route('author.index') }}">criar autor</a>
     
     <h1>listar autores</h1>
 
