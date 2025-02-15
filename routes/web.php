@@ -76,7 +76,7 @@ Route::get('/edit-user/{user}',[UserController::class,'edit'])->name('user.edit'
 Route::put('/update-user/{user}',[UserController::class, 'update'])->name('user-update');
 Route::get('/destroi-user/{user}',[UserController::class,'destroy'])->name('user.destroy');
 
-<<<<<<< HEAD
+
 
 #Venda
 Route::get('/venda', [SaleController::class, 'index'])->name('sale.index');
