@@ -36,9 +36,6 @@ Route::post('/logout-adm', [AdmAuthController::class, 'logout'])->name('logout-a
 
 
 
-#Menu
-Route::get('/', [MenuController::class, 'index'])->name('menu.index');
-
 
 #Autores
 Route::get('/author', [AuthorController::class, 'index'])->name('author.index');
@@ -76,7 +73,7 @@ Route::get('/edit-user/{user}',[UserController::class,'edit'])->name('user.edit'
 Route::put('/update-user/{user}',[UserController::class, 'update'])->name('user-update');
 Route::get('/destroi-user/{user}',[UserController::class,'destroy'])->name('user.destroy');
 
-<<<<<<< HEAD
+
 
 #Venda
 Route::get('/venda', [SaleController::class, 'index'])->name('sale.index');
@@ -84,7 +81,7 @@ Route::get('/create-sale',[SaleController::class,'create'])->name('sale.create')
 Route::post('/store-sale',[SaleController::class,'store'])->name('sale-store');
 
 #Estoque (parece estar duplicado, escolha se quer manter)
-Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
+#Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
 
 
 

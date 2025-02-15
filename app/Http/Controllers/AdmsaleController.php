@@ -71,6 +71,7 @@ class AdmsaleController extends Controller
         // Calculando o valor total
         $totalValue = $book->sale_price * $request->quantity;
         
+        $userId = $request->user_id;
         // Pegando o ID do usuário logado (seja cliente ou admin)
         #$userId = auth()->id();
         
