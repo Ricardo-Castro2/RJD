@@ -43,6 +43,21 @@
 </head>
 <body>
 
+    <h1>Menu Adm</h1>
+
+    <a href="{{ route('author.index') }}"> Autores </a> 
+    <br>
+    <a href="{{ route('publisher.index') }}"> editoras </a> 
+    <br>
+    <a href="{{ route('book.index') }}"> livros </a> 
+    <br>
+    <a href="{{ route('user.index') }}"> usuario </a> 
+    <br>
+    <a href="{{ route('adm.index') }}"> adm </a> 
+
+
+    
+
 
     <div class="header">
         <h1>Menu Adm</h1>
@@ -58,6 +73,14 @@
         <h1>Menu cliente</h1>
         <a href="{{ route('user.login') }}"> shoping </a> 
     </div>
+
+    <form action="{{ route('logout-adm') }}" method="POST">
+        @csrf
+        <button type="submit">Sair</button>
+    </form>
+
+    <br>
+
 
     <div class="content">
         

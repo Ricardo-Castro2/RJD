@@ -18,6 +18,7 @@ return [
         'passwords' => env('AUTH_PASSWORD_BROKER', 'users'),
     ],
 
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
@@ -39,6 +40,10 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'adm' => [ // Novo guard para admins
+            'driver' => 'session',
+            'provider' => 'adm',
         ],
     ],
 
@@ -64,6 +69,10 @@ return [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
         ],
+        'adm' => [ // Novo provider para adm
+        'driver' => 'eloquent',
+        'model' => App\Models\Adm::class, // Model correto
+    ],
 
         // 'users' => [
         //     'driver' => 'database',
