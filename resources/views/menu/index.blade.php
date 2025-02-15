@@ -19,6 +19,24 @@
             text-align: center;
             padding: 15px 0;
         }
+        .btn {
+            display: flex;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            height: 10%;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
 
         
         .footer {
@@ -46,17 +64,18 @@
 
     <div class="header">
         <h1>Menu Adm</h1>
-        <a href="{{ route('author.index') }}"> Autores </a> 
+        <a href="{{ route('author.index') }}" class="btn"> Autores </a> 
         <br>
-        <a href="{{ route('publisher.index') }}"> editoras </a> 
+        <a href="{{ route('publisher.index') }}" class="btn"> editoras </a> 
         <br>
-        <a href="{{ route('book.index') }}"> livros </a> 
+        <a href="{{ route('book.index') }}" class="btn"> livros </a> 
         <br>
-        <a href="{{ route('user.index') }}"> usuario </a> 
+        <a href="{{ route('user.index') }}" class="btn"> usuario </a> 
         <br>
 
-        <h1>Menu cliente</h1>
-        <a href="{{ route('user.login') }}"> shoping </a> 
+        <h1>Menu user</h1>
+
+        <a href="{{ route('user.login') }}" class="btn"> shoping </a> 
     </div>
 
     <div class="content">

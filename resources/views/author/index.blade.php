@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        .header {
+            display: flex;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            
+        }
+
         .btn-custom {
             background-color: #3490dc;
             color: white;
@@ -14,21 +28,42 @@
             font-weight: bold;
             display: inline-block;
             transition: background-color 0.3s;
+            height: 10%;
         }
         .btn-custom:hover {
             background-color: #2779bd;
         }
+
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
         
+        .content {
+            margin-top: 100px;
+            margin-bottom: 60px; 
+            padding: 20px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
 
-    <h1>Cadastrar autor</h1>
+    <div class="header">
+        <h1>Cadastrar autor</h1>
 
-    <a href="{{ route('author.create') }}" class="btn-custom">Cadastrar autor</a>
+        <a href="{{ route('author.create') }}" class="btn-custom">Cadastrar autor</a>
+            
+    </div>
 
-
-
+    <div class="content">
     <h1>listar autores</h1>
 
     @if(session('success'))
@@ -49,7 +84,11 @@
     @empty
         
     @endforelse
+    </div>
 
+    <div class="footer">
+        <p></p>
+    </div>
     
 
 </body>
