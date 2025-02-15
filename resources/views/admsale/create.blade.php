@@ -11,7 +11,7 @@
     
 
 
-    <form action="{{ route('sale-store') }}" method="POST">
+    <form action="{{ route('admsale-store') }}" method="POST">
         @csrf
         @method('POST')
     

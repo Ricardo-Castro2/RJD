@@ -51,12 +51,20 @@
     <br>
     <a href="{{ route('book.index') }}"> livros </a> 
     <br>
-    <a href="{{ route('user.index') }}"> usuario </a> 
+    <a href="{{ route('user.index') }}"> clientes usuarios </a> 
     <br>
+    <a href="{{ route('adm.index') }}"> adm usuarios</a> 
+    <br>
+    <a href="{{ route('admsale.create') }}"> criar venda como adm </a> 
+    <br>
+    <a href="{{ route('admsale.index') }}"> ver vendas </a> 
+    <br>
+
     <a href="{{ route('adm.index') }}"> adm </a> 
 
 
     
+
 
 
     <div class="header">

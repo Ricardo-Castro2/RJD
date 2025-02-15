@@ -27,4 +27,15 @@ class Sale extends Model
     {
         return $this->belongsTo(Book::class);
     }
+    // app/Models/Sale.php
+
+    public function publisher()
+    {
+        return $this->belongsTo(Publisher::class); // Supondo que Sale tenha uma chave estrangeira 'publisher_id'
+    }
+
+    public function author()
+    {
+        return $this->belongsTo(Author::class); // Supondo que Sale tenha uma chave estrangeira 'author_id'
+    }
 }

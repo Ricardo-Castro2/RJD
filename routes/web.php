@@ -11,7 +11,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdmAuthController; 
 use App\Http\Controllers\AdmController; 
 use App\Http\Controllers\InicioController; 
-
+use App\Http\Controllers\AdmsaleController; 
 
                     ###Menu geral ###
 Route::get('/',[InicioController::class,'index'])->name('start.index');
@@ -109,6 +109,10 @@ Route::get('/comprar/confirm', [SaleController::class, 'confirm'])->name('sale.c
 Route::post('/comprar-finalizar', [SaleController::class, 'store'])->name('sale-store');
 Route::get('/compra/{sale}/pix', [SaleController::class, 'gerarPix'])->name('sale.pix');
 
+#venda adm
+Route::get('/venda', [AdmsaleController::class, 'index'])->name('admsale.index');
+Route::get('/create-sale',[AdmsaleController::class,'create'])->name('admsale.create');
+Route::post('/comprar-finaliza', [AdmsaleController::class, 'store'])->name('admsale-store');
 
 
 

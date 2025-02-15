@@ -16,6 +16,13 @@
         </div>
     @endif
 
+    @if(session('success'))
+        <p style="color:#086;">
+            {{ session('success') }}
+   
+        </p>
+    @endif
+
     <form action="{{ route('login_logar') }}" method="POST">
         @csrf
         <label for="email">E-mail:</label>

@@ -19,6 +19,6 @@ class MenuController extends Controller
     
     public function inicio()
     {
-        return view('menu.inicio');
+        return view('menu.index');
     }
 }
