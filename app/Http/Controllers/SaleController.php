@@ -1,13 +1,8 @@
 <?php
 namespace App\Http\Controllers;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 53807d9b1dfc085c78e28b53d81ecb64b52f0ebc
-=======
 
->>>>>>> 7c78f0a0f74e89f478a264d7678514ec9da9b949
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Sale;
@@ -78,7 +73,7 @@ class SaleController extends Controller
 
     public function confirm(Request $request)
     {
-<<<<<<< HEAD
+
         #dd($request->all());
         // Validação dos dados
         $request->validate([
@@ -87,30 +82,29 @@ class SaleController extends Controller
             'quantity' => 'required|integer|min:1',
             'total_value' => 'required|numeric',
         ]);
-<<<<<<< HEAD
+
 
         // Pegando o livro pelo ID
         $book = Book::findOrFail($request->book_id);
 
         // Verifica se há estoque suficiente
-=======
+
     
         // Pegando o livro
         $book = Book::findOrFail($request->book_id);
     
         // Verificando se tem estoque suficiente
->>>>>>> 53807d9b1dfc085c78e28b53d81ecb64b52f0ebc
+
         if ($request->quantity > $book->amount) {
             return redirect()->back()->with('error', 'Estoque insuficiente para essa quantidade!');
         }
-<<<<<<< HEAD
+
 
         // Calculando o valor total
         $totalValue = $book->sale_price * $request->quantity;
 
-=======
-    
->>>>>>> 53807d9b1dfc085c78e28b53d81ecb64b52f0ebc
+
+
         // Criando a venda
         Sale::create([
             'user_id' => $request->user_id,
@@ -118,22 +112,20 @@ class SaleController extends Controller
             'quantity' => $request->quantity,
             'total_value' => $request->total_value
         ]);
-<<<<<<< HEAD
 
         // Atualizando o estoque do livro
         $book->amount -= $request->quantity;
         $book->save();
 
         return redirect()->route('sale.index')->with('success', 'Venda criada com sucesso!');
-=======
+
     
         // Atualizando o estoque
         $book->amount -= $request->quantity;
         $book->save();
 
         return redirect()->route('sale.shop')->with('success', 'Compra realizada com sucesso!');
->>>>>>> 53807d9b1dfc085c78e28b53d81ecb64b52f0ebc
-=======
+
         $book = Book::findOrFail($request->book_id);
         $totalValue = $book->sale_price * $request->quantity;
 

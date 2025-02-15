@@ -3,51 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
-        .btn-custom {
-            background-color: #3490dc;
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
             color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            display: inline-block;
-            transition: background-color 0.3s;
+            text-align: center;
+            padding: 15px 0;
         }
-        .btn-custom:hover {
-            background-color: #2779bd;
+
+        
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+
+        /* Conteúdo principal para não ficar coberto pelo cabeçalho */
+        .content {
+            margin-top: 100px; /* Espaço para o cabeçalho */
+            margin-bottom: 60px; /* Espaço para o rodapé */
+            padding: 20px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
-    <h1>Menu autores</h1>
-    
-    <a href="{{ route('author.create') }}" class="btn-custom">criar autor</a>
 
-    
-    <h1>listar autores</h1>
-
-    @if(session('success'))
-        <p style="color:#086;">
-            {{ session('success') }}
-        </p>
-    @endif
-  
-    
-    @forelse ($authors as $author)   
+    <div class="header">
+        <h1>Menu Adm</h1>
+        <a href="{{ route('author.index') }}"> Autores </a> 
         <br>
-        ID: {{ $author->id }}<br>
-        Nome: {{ $author-> name }}<br>
-        <a href="{{ route('author.show',['author' => $author->id]) }}"> visualizar autor</a><br>
-        <a href="{{ route('author.edit',['author' => $author->id]) }}"> editar autor </a><br>
-        <a href="{{ route('author.destroy',['author' => $author->id]) }}"> apagar autor</a><br>
-        <hr>
-    @empty
-        
-    @endforelse
-              
+        <a href="{{ route('publisher.index') }}"> editoras </a> 
+        <br>
+        <a href="{{ route('book.index') }}"> livros </a> 
+        <br>
+        <a href="{{ route('user.index') }}"> usuario </a> 
+        <br>
 
+        <h1>Menu cliente</h1>
+        <a href="{{ route('user.login') }}"> shoping </a> 
+    </div>
+
+    <div class="content">
+        
+    </div>
+
+    <div class="footer">
+        <p></p>
+    </div>
 </body>
 </html>
