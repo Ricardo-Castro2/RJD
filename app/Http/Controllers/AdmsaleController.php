@@ -72,11 +72,11 @@ class AdmsaleController extends Controller
         $totalValue = $book->sale_price * $request->quantity;
         
         // Pegando o ID do usuário logado (seja cliente ou admin)
-        $userId = auth()->id();
+        #$userId = auth()->id();
         
-        if (!$userId) {
-            return redirect()->back()->with('error', 'Usuário não autenticado para realizar a compra!');
-        }
+        #if (!$userId) {
+            #return redirect()->back()->with('error', 'Usuário não autenticado para realizar a compra!');
+        #}
         
         // Criando a venda com o ID do usuário logado
         $sale = Sale::create([
