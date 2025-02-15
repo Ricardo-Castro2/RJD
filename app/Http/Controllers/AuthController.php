@@ -49,7 +49,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('sale.shop'); // Redireciona para a página de compras
+        return redirect()->route('user.login')->with('success','usuario deslogado com sucesso'); // Redireciona para a página de compras
     }
 }
 

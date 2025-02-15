@@ -19,11 +19,11 @@
     @if(session('success'))
         <p style="color:#086;">
             {{ session('success') }}
-   
+       
         </p>
     @endif
 
-    <form action="{{ route('login_logar') }}" method="POST">
+    <form action="{{ route('login-adm-logar') }}" method="POST">
         @csrf
         <label for="email">E-mail:</label>
         <input type="email" name="email" required><br><br>
@@ -34,7 +34,7 @@
         <button type="submit">Login</button>
     </form>
 
-    <p>Não tem uma conta? <a href="{{ route('user.create') }}">Criar uma conta</a></p>
+    <p>Não tem uma conta? <a href="{{ route('adm.create') }}">Criar uma conta</a></p>
 
 </body>
 </html>

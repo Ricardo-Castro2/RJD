@@ -9,6 +9,8 @@ use App\Models\Sale;
 use App\Http\Requests\SaleRequest;
 use App\Models\Book;
 use App\Models\User;
+use App\Models\Publisher;
+use App\Models\Author;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -20,49 +22,6 @@ class SaleController extends Controller
     {
         $this->middleware('auth'); // Aplica o middleware 'auth' a todas as rotas desse controlador
     }
-
-
-    public function index()
-    {
-        #$books = Book::orderByDesc('id')->get();
-        ##['books' => $books];
-
-        ##$books = Book::with(['publisher', 'author'])->get();
-        ##, compact('books')
-
-        #$books = Book::with(['publisher', 'author'])->get();
-        #, compact('books')
-
-        return view('sale.index');
-    }
-
-
-
-    public function show(Author $author)
-    {
-        return view('author.show', ['author' => $author]);
-    }
-
-
-
-
-    public function create()
-    {
-
-        #$publishers = Publisher::orderByDesc('id')->get();
-        #$authors = Author::orderByDesc('id')->get();
-        #return view('book.create',['publishers' => $publishers, 'authors' => $authors]);
-
-        $books = Book::all();
-        $users = User::all();
-        return view('sale.create', compact('books', 'users'));
-
-        $publishers = Publisher::orderByDesc('id')->get();
-        $authors = Author::orderByDesc('id')->get();
-        return view('book.create',['publishers' => $publishers, 'authors' => $authors]);
-
-    }
-
 
 
     public function shop()
@@ -181,12 +140,6 @@ class SaleController extends Controller
         }
         
 
-
-
-
-
-
-
     public function gerarPix($saleId)
     {
         $sale = Sale::findOrFail($saleId);
@@ -195,8 +148,9 @@ class SaleController extends Controller
         $pixKey = rand(1000000000000000, 9999999999999999);
 
         return view('sale.pix', compact('sale', 'pixKey'));
->>>>>>> 7c78f0a0f74e89f478a264d7678514ec9da9b949
+
     }
+
 
 
 
@@ -225,14 +179,7 @@ class SaleController extends Controller
         $author->delete();
         return redirect()->route('author.index')->with('success', 'Autor deletado com sucesso!');
     }
-<<<<<<< HEAD
-=======
 
 
-<<<<<<< HEAD
->>>>>>> 53807d9b1dfc085c78e28b53d81ecb64b52f0ebc
-=======
 
-
->>>>>>> 7c78f0a0f74e89f478a264d7678514ec9da9b949
 }
