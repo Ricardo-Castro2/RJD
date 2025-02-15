@@ -18,15 +18,17 @@
         .btn-custom:hover {
             background-color: #2779bd;
         }
+        
     </style>
 </head>
 <body>
 
-    <h1>Menu autores</h1>
-    
-    <a href="{{ route('author.create') }}" class="btn-custom">criar autor</a>
+    <h1>Cadastrar autor</h1>
 
-    
+    <a href="{{ route('author.create') }}" class="btn-custom">Cadastrar autor</a>
+
+
+
     <h1>listar autores</h1>
 
     @if(session('success'))
@@ -47,7 +49,8 @@
     @empty
         
     @endforelse
-              
+
+    
 
 </body>
 </html>
