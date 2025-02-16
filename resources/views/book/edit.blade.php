@@ -4,13 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Editar Livro</title>
 </head>
 <body>
     
-    <a href="{{ route('user.index') }}"> listar </a><br>
-    <a href="{{ route('user.show',['user'=>$user->id]) }}">visualizar </a><br>
-    <h1>editar usuario </h1>
+    <a href="{{ route('book.index') }}">Listar livros</a><br>
+    <a href="{{ route('book.show', ['book' => $book->id]) }}">Visualizar livro</a><br>
+    <h1>Editar Livro</h1>
+    
     @if ($errors->any())
         @foreach($errors->all() as $error)
             <p style="color:#f00;">
@@ -19,23 +20,47 @@
         @endforeach
     @endif
 
-
-    <form action="{{ route('user-update',['user'=>$user->id]) }}" method="POST">
+    <form action="{{ route('book-update', ['book' => $book->id]) }}" method="POST">
         @csrf
         @method('PUT')
 
-        <label>nome: </label>
-        <input type="text" name="name" placeholder="Nome completo"  value="{{old('name',$user->name)}}"><br>
+        <label>Nome: </label>
+        <input type="text" name="name" placeholder="Nome do livro" value="{{ old('name', $book->name) }}"><br>
 
-        <label>E-mail: </label>
-        <input type="email" name="email" placeholder="melhor email do usuario" value="{{old('email', $user->email)}}"><br>
+        <label>Preço de Venda: </label>
+        <input type="number" name="sale_price" placeholder="Preço de venda" value="{{ old('sale_price', $book->sale_price) }}"><br>
 
-        <label>senha: </label>
-        <input type="password" name="password" placeholder="senha minimo 6 caracteris" value="{{old('password')}}"><br>
+        <label>Preço de Compra: </label>
+        <input type="number" name="purchase_price" placeholder="Preço de compra" value="{{ old('purchase_price', $book->purchase_price) }}"><br>
 
+        <label>Quantidade: </label>
+        <input type="number" name="amount" placeholder="Quantidade" value="{{ old('amount', $book->amount) }}"><br>
+
+        <label>Editora: </label>
+        <select name="publishers_id" required>
+            <option value="">Selecione uma editora</option>
+            @foreach($publishers as $publisher)
+                <option value="{{ $publisher->id }}" {{ old('publishers_id', $book->publishers_id) == $publisher->id ? 'selected' : '' }}>
+                    {{ $publisher->name }}
+                </option>
+            @endforeach
+        </select><br>
+
+        <label>Autores: </label>
+        <select name="authors_id" required>
+            <option value="">Selecione um autor</option>
+            @foreach($authors as $author)
+                <option value="{{ $author->id }}" {{ old('authors_id', $book->authors_id) == $author->id ? 'selected' : '' }}>
+                    {{ $author->name }}
+                </option>
+            @endforeach
+        </select><br>
         
-        <button type="submit">editar</button>
+        <button type="submit">Atualizar livro</button>
     </form>
 
 </body>
 </html>
+
+
+      

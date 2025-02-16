@@ -64,21 +64,20 @@
     <h1>Menu Adm</h1>
 
     <a href="{{ route('author.index') }}"> Autores </a> 
-    <br>
+<br>
     <a href="{{ route('publisher.index') }}"> editoras </a> 
-    <br>
+<br>
     <a href="{{ route('book.index') }}"> livros </a> 
-    <br>
+<br>
     <a href="{{ route('user.index') }}"> clientes usuarios </a> 
-    <br>
+<br>
     <a href="{{ route('adm.index') }}"> adm usuarios</a> 
-    <br>
+<br>
     <a href="{{ route('admsale.create') }}"> criar venda como adm </a> 
-    <br>
-    <a href="{{ route('admsale.index') }}"> ver vendas </a> 
-    <br>
-
-    <a href="{{ route('adm.index') }}"> adm </a> 
+<br>
+    <a href="{{ route('admsale.index') }}"> vendas </a> 
+<br>
+<br>
 
     <form action="{{ route('logout-adm') }}" method="POST">
         @csrf

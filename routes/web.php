@@ -60,6 +60,12 @@ Route::get('/book', [BookController::class, 'index'])->name('book.index');
 Route::get('/create-book',[BookController::class,'create'])->name('book.create');
 Route::post('/store-book',[BookController::class,'store'])->name('book-store');
 
+Route::get('/edit-book/{book}',[BookController::class,'edit'])->name('book.edit');
+Route::put('/update-book/{book}',[BookController::class, 'update'])->name('book-update');
+Route::get('show-{book}',[BookController::class,'show'])->name('book.show');
+
+Route::get('/destroi-book/{book}',[BookController::class,'destroy'])->name('book.destroy');
+
 
 #criar cliente usuario
 
@@ -72,26 +78,7 @@ Route::put('/update-user/{user}',[UserController::class, 'update'])->name('user-
 Route::get('/destroi-user/{user}',[UserController::class,'destroy'])->name('user.destroy');
 
 
-
-#Venda
-#Route::get('/venda', [SaleController::class, 'index'])->name('sale.index');
-#Route::get('/create-sale',[SaleController::class,'create'])->name('sale.create');
-#Route::post('/store-sale',[SaleController::class,'store'])->name('sale-store');
-
-#Estoque (parece estar duplicado, escolha se quer manter)
-#Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
-
-
-
-#Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
-#Route::get('/create-book',[BookController::class,'create'])->name('book.create');
-#Route::post('/store-book',[BookController::class,'store'])->name('book-store');
-// Rota para exibir o formulário de login
-
-
-
 #login cliente
-
 Route::get('/login',[AuthController::class,'login'])->name('user.login');
 // Rota para processar o login
 Route::post('/login/logar', [AuthController::class, 'login_logar'])->name('login_logar');
@@ -108,10 +95,10 @@ Route::get('/compra/{sale}/pix', [SaleController::class, 'gerarPix'])->name('sal
 Route::get('/venda', [AdmsaleController::class, 'index'])->name('admsale.index');
 Route::get('/create-sale',[AdmsaleController::class,'create'])->name('admsale.create');
 Route::post('/comprar-finaliza', [AdmsaleController::class, 'store'])->name('admsale-store');
-
-
-
-
+Route::get('/edit-sale/{sale}',[AdmsaleController::class,'edit'])->name('admsale.edit');
+Route::put('/update-sale/{sale}',[AdmsaleController::class, 'update'])->name('admsale-update');
+Route::get('show-{sale}',[AdmsaleController::class,'show'])->name('admsale.show');
+Route::get('/destroi-sale/{sale}',[AdmsaleController::class,'destroy'])->name('admsale.destroy');
 
 
 

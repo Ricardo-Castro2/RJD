@@ -35,10 +35,13 @@ class AdmsaleController extends Controller
 
 
 
-    public function show(Author $author)
+    public function show(Sale $sale)
     {
-        return view('author.show', ['author' => $author]);
+        $sale->load('user', 'book'); // Carrega os relacionamentos do comprador e do livro
+    
+        return view('admsale.show', ['sale' => $sale]);
     }
+    
 
 
     public function create()
@@ -97,29 +100,73 @@ class AdmsaleController extends Controller
         
 
 
-    public function edit(Author $author)
+    public function edit(Sale $sale)
     {
-        return view('author.edit', ['author' => $author]);
+        $users = User::all(); // Buscar todos os usuários
+        $books = Book::all(); // Buscar todos os livros
+
+        return view('admsale.edit', [
+            'sale' => $sale,
+            'users' => $users,
+            'books' => $books,
+        ]);
     }
 
-    public function update(AuthorRequest $request, Author $author)
+
+
+
+    public function update(Request $request, Sale $sale)
     {
-        $request->validated();
-        $author->update([
-            'name' => $request->name,
+        // Validação dos dados
+        $request->validate([
+            'book_id' => 'required|exists:books,id',
+            'quantity' => 'required|integer|min:1',
+            'user_id' => 'nullable|exists:users,id',
         ]);
 
-        return redirect()->route('author.index', ['author' => $author->id])->with('success', 'Autor editado com sucesso!');
+        // Pegando o livro pelo ID
+        $book = Book::findOrFail($request->book_id);
+
+        // Verifica se há estoque suficiente ao atualizar a venda
+        $stockAvailable = $book->amount + $sale->quantity; // Repondo a quantidade anterior
+        if ($request->quantity > $stockAvailable) {
+            return redirect()->back()->with('error', 'Quantidade maior que o estoque disponível!');
+        }
+
+        // Calculando o novo valor total
+        $totalValue = $book->sale_price * $request->quantity;
+
+        // Atualizando a venda
+        $sale->update([
+            'user_id' => $request->user_id,
+            'book_id' => $request->book_id,
+            'quantity' => $request->quantity,
+            'total_value' => $totalValue,
+        ]);
+
+        // Atualizando o estoque do livro
+        $book->amount = $stockAvailable - $request->quantity;
+        $book->save();
+
+        return redirect()->route('admsale.index')->with('success', 'Venda atualizada com sucesso!');
     }
 
 
 
 
-    public function destroy(Author $author)
+    public function destroy(Sale $sale)
     {
-        $author->delete();
-        return redirect()->route('author.index')->with('success', 'Autor deletado com sucesso!');
-    }
+        // Restaurar o estoque antes de excluir a venda
+        $book = Book::findOrFail($sale->book_id);
+        $book->amount += $sale->quantity;
+        $book->save();
+
+        // Excluir a venda
+        $sale->delete();
+
+    return redirect()->route('admsale.index')->with('success', 'Venda deletada com sucesso!');
+}
+
 
 
 }

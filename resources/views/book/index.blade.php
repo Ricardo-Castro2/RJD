@@ -35,13 +35,15 @@
         quantidade: {{ $book->amount }}<br>
         Editora: {{ $book->publisher ? $book->publisher->name : 'Não especificado' }}<br> <!-- Nome da editora -->
         Autor: {{ $book->author ? $book->author->name : 'Não especificado' }}<br> <!-- Nome do autor -->
-        <hr>
+        
 
-        {{--
+        
         <a href="{{ route('book.show',['book' => $book->id]) }}"> visualizar</a><br>
+
         <a href="{{ route('book.edit',['book' => $book->id]) }}"> editar</a><br>
-        <a href="{{ route('book.destroy',['book' => $book->id]) }}"> apagar</a><br>
-        --}}
+        <a href="{{ route('book.destroy',['book' => $book->id]) }}"> apagar</a><br>  
+        
+        <hr>
         
     @empty
         

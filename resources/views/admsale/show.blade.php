@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Detalhes da Venda</title>
 </head>
 <body>
 
-    <a href="{{ route('user.index') }}"> listar </a><br>
-    <a href="{{ route('user.edit',['user'=>$user->id]) }}">editar </a><br>
+    <a href="{{ route('admsale.index') }}">Listar Vendas</a><br>
+    <a href="{{ route('admsale.edit', ['sale' => $sale->id]) }}">Editar Venda</a><br>
 
-    <h1>visualizar usuario </h1>
+    <h1>Visualizar Venda</h1>
+
     @if(session('success'))
         <p style="color:#086;">
             {{ session('success') }}
-           
         </p>
     @endif
 
-    ID:{{ $user->id }}<br>
-    Nome: {{ $user->name }}<br>
-    E-mail: {{ $user->email }}<br>
-    Cadastrado: {{  \Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i:s') }}<br>
-    editado: {{  \Carbon\Carbon::parse($user->update_at)->format('d/m/Y H:i:s') }}<br>
+    <p><strong>ID da Venda:</strong> {{ $sale->id }}</p>
+    <p><strong>Comprador:</strong> {{ $sale->user->name ?? 'Não informado' }}</p>
+    <p><strong>Livro:</strong> {{ $sale->book->name }}</p>
+    <p><strong>Quantidade:</strong> {{ $sale->quantity }}</p>
+    <p><strong>Valor Total:</strong> R$ {{ number_format($sale->total_value, 2, ',', '.') }}</p>
+    <p><strong>Data da Compra:</strong> {{ \Carbon\Carbon::parse($sale->created_at)->format('d/m/Y H:i:s') }}</p>
+    <p><strong>Última Atualização:</strong> {{ \Carbon\Carbon::parse($sale->updated_at)->format('d/m/Y H:i:s') }}</p>
 
-    
 </body>
 </html>
+

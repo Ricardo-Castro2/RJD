@@ -10,7 +10,7 @@
     
     
 
-    <h1>listar livros</h1>
+    <h1>listar vendas</h1>
 
     <a href="{{ route('admsale.create') }}"> criar  </a> 
     <br><hr>
@@ -32,6 +32,11 @@
         Quantidade: {{ $sale->quantity }}<br> <!-- Quantidade vendida -->
         Editora: {{ $sale->book->publisher ? $sale->book->publisher->name : 'Não especificado' }}<br>
         Autor: {{ $sale->book->author ? $sale->book->author->name : 'Não especificado' }}<br>
+
+        <a href="{{ route('admsale.show',['sale' => $sale->id]) }}"> visualizar venda</a><br>
+        <a href="{{ route('admsale.edit',['sale' => $sale->id]) }}"> editar venda </a><br>
+        <a href="{{ route('admsale.destroy',['sale' => $sale->id]) }}"> apagar venda</a><br> 
+        
     <hr>
     @empty
         <p>Nenhuma venda registrada.</p>
