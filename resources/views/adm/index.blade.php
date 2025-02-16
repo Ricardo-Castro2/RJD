@@ -8,7 +8,7 @@
 <body>
     
     
-    <a href="{{ route('adm.create') }}"> criar  </a> 
+    
 
     <h1>listar usuarios</h1>
 
