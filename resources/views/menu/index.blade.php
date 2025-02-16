@@ -80,41 +80,11 @@
 
     <a href="{{ route('adm.index') }}"> adm </a> 
 
-
-    
-
-
-
-    <div class="header">
-        <h1>Menu Adm</h1>
-        <a href="{{ route('author.index') }}" class="btn"> Autores </a> 
-        <br>
-        <a href="{{ route('publisher.index') }}" class="btn"> editoras </a> 
-        <br>
-        <a href="{{ route('book.index') }}" class="btn"> livros </a> 
-        <br>
-        <a href="{{ route('user.index') }}" class="btn"> usuario </a> 
-        <br>
-
-        <h1>Menu user</h1>
-
-        <a href="{{ route('user.login') }}" class="btn"> shoping </a> 
-    </div>
-
     <form action="{{ route('logout-adm') }}" method="POST">
         @csrf
         <button type="submit">Sair</button>
     </form>
 
-    <br>
 
-
-    <div class="content">
-        
-    </div>
-
-    <div class="footer">
-        <p></p>
-    </div>
 </body>
 </html>

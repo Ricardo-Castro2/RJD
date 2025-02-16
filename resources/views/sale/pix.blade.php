@@ -12,5 +12,7 @@
 <p><strong>{{ $pixKey }}</strong></p>
 <p>Aguardamos o seu pagamento para finalizar a transação.</p>
 
+<a href="{{ route('sale.shop') }}"> voltar </a> 
+
 </body>
 </html>

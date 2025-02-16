@@ -29,15 +29,11 @@ Route::get('/destroi-adm/{adm}',[AdmController::class,'destroy'])->name('adm.des
 #menus das funcoes adms
 Route::get('/inicio', [MenuController::class, 'inicio'])->name('menu.index');
 
+
 #login adm autenticar
 Route::get('/loginadm', [AdmAuthController::class, 'adm_login'])->name('adm.login');
 Route::post('/login-adm-logar', [AdmAuthController::class, 'login_logar'])->name('login-adm-logar');
 Route::post('/logout-adm', [AdmAuthController::class, 'logout'])->name('logout-adm');
-
-
-
-#Menu
-
 
 
 #Autores
@@ -79,12 +75,12 @@ Route::get('/destroi-user/{user}',[UserController::class,'destroy'])->name('user
 
 
 #Venda
-Route::get('/venda', [SaleController::class, 'index'])->name('sale.index');
-Route::get('/create-sale',[SaleController::class,'create'])->name('sale.create');
-Route::post('/store-sale',[SaleController::class,'store'])->name('sale-store');
+#Route::get('/venda', [SaleController::class, 'index'])->name('sale.index');
+#Route::get('/create-sale',[SaleController::class,'create'])->name('sale.create');
+#Route::post('/store-sale',[SaleController::class,'store'])->name('sale-store');
 
 #Estoque (parece estar duplicado, escolha se quer manter)
-Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
+#Route::get('/estoque', [SaleController::class, 'index'])->name('sale.index');
 
 
 
