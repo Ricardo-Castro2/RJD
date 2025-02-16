@@ -5,17 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de Livros</title>
     <script>
-        function atualizarTotal(input, preco, totalId) {
-            let quantidade = input.value;
-            let total = preco * quantidade;
-            document.getElementById(totalId).textContent = "R$ " + total.toFixed(2).replace(".", ",");
-        }
-    </script>
-</head>
-<body>
-
-    <h2>Loja de Livros</h2>
-    <script>
         function confirmarCompra(event) {
             event.preventDefault(); // Impede o envio do formulário imediatamente
             const confirma = confirm("Você tem certeza que deseja comprar este livro?");
@@ -31,7 +20,9 @@
             document.getElementById(idTotal).innerText = 'R$ ' + total.toFixed(2).replace('.', ',');
         }
     </script>
-    
+</head>
+<body>
+
     <h2>Loja de Livros</h2>
     
     @if(session('success'))
@@ -45,6 +36,7 @@
     <table border="1">
         <thead>
             <tr>
+                <th>Imagem</th>
                 <th>Nome</th>
                 <th>Preço</th>
                 <th>Quantidade</th>
@@ -55,6 +47,14 @@
         <tbody>
             @foreach($books as $book)
                 <tr>
+                    <!-- Exibe a imagem do livro -->
+                    <td>
+                        @if($book->image)
+                            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->name }}" width="100">
+                        @else
+                            <p>Sem imagem</p>
+                        @endif
+                    </td>
                     <td>{{ $book->name }}</td>
                     <td>R$ {{ number_format($book->sale_price, 2, ',', '.') }}</td>
                     <td>
@@ -75,9 +75,11 @@
             @endforeach
         </tbody>
     </table>
+    
     <form action="{{ route('logout') }}" method="POST">
         @csrf
         <button type="submit">Sair</button>
     </form>
 
-    
+</body>
+</html>

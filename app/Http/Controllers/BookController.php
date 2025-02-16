@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Book;
 use App\Http\Requests\BookRequest;
@@ -14,49 +13,60 @@ class BookController
 {
     public function index()
     {
-        #$books = Book::orderByDesc('id')->get();
-        ##['books' => $books];
         $books = Book::with(['publisher', 'author'])->get();
         return view('book.index', compact('books'));
     }
-
-
 
     public function show(Book $book)
     {
         return view('book.show', ['book' => $book]);
     }
-    
 
     public function create()
     {
         $publishers = Publisher::orderByDesc('id')->get();
         $authors = Author::orderByDesc('id')->get();
-        return view('book.create',['publishers' => $publishers, 'authors' => $authors]);
+        return view('book.create', ['publishers' => $publishers, 'authors' => $authors]);
     }
-
-
     public function store(Request $request)
     {
-        #$request->validated();
+        // Validação dos dados
         #dd($request->all());
-        $request->validate([
-            'publishers_id' => 'required|exists:publishers,id', 
-            'authors_id' => 'required|exists:authors,id',   // Garante que a editora exista
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'sale_price' => 'required|numeric',
+            'purchase_price' => 'required|numeric',
+            'amount' => 'required|integer',
+            'publishers_id' => 'required|exists:publishers,id',
+            'authors_id' => 'required|exists:authors,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        
-        Book::create([
+    
+        // Salvar a imagem e exibir o caminho gerado
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('books/images', 'public'); 
+            #@dd($imagePath); // Depuração: Verificar o caminho salvo
+        }
+        if ($request->hasFile('image')) {
+            // Garante que o diretório 'public/storage/books/images' esteja acessível
+            $imagePath = $request->file('image')->store('books/images', 'public');
+        }
+    
+        // Criação do livro
+        $book = Book::create([
             'name' => $request->name,
             'sale_price' => $request->sale_price,
             'purchase_price' => $request->purchase_price,
             'amount' => $request->amount,
-            'publisher_id' => $request->publishers_id,  // Garante que publisher_id seja passado
-            'author_id' => $request->authors_id, 
+            'publisher_id' => $request->publishers_id,
+            'author_id' => $request->authors_id,
+            'image' => $imagePath, // Salva o caminho correto
         ]);
-        return redirect()->route('book.index')->with('success', 'livro criado com sucesso!');
+    
+        return redirect()->route('book.index')->with('success', 'Livro criado com sucesso!');
     }
-
-
+    
+    
 
     public function edit(Book $book)
     {
@@ -65,7 +75,6 @@ class BookController
         $authors = Author::all();        // Carregar todos os autores
         return view('book.edit', compact('book', 'publishers', 'authors'));
     }
-    
 
     public function update(Request $request, Book $book)
     {
@@ -77,8 +86,21 @@ class BookController
             'sale_price' => 'required|numeric',
             'purchase_price' => 'required|numeric',
             'amount' => 'required|integer|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',  // Validação para a imagem
         ]);
-    
+
+        // Se houver nova imagem no request
+        if ($request->hasFile('image')) {
+            // Apagar a imagem anterior se existir
+            if ($book->image && file_exists(public_path('storage/' . $book->image))) {
+                unlink(public_path('storage/' . $book->image));
+            }
+
+            // Salvar a nova imagem
+            $imagePath = $request->file('image')->store('books/images', 'public');
+            $book->image = $imagePath;  // Atualiza o caminho da imagem no banco
+        }
+
         // Atualiza os dados do livro
         $book->update([
             'name' => $request->name,
@@ -88,15 +110,18 @@ class BookController
             'publisher_id' => $request->publishers_id,
             'author_id' => $request->authors_id,
         ]);
-    
+
         return redirect()->route('book.index')->with('success', 'Livro editado com sucesso!');
     }
-    
+
     public function destroy(Book $book)
     {
+        // Apagar a imagem se existir
+        if ($book->image && file_exists(public_path('storage/' . $book->image))) {
+            unlink(public_path('storage/' . $book->image));
+        }
+
         $book->delete();
         return redirect()->route('book.index')->with('success', 'Livro deletado com sucesso!');
     }
-    
-
 }

@@ -62,9 +62,9 @@ Route::post('/store-book',[BookController::class,'store'])->name('book-store');
 
 Route::get('/edit-book/{book}',[BookController::class,'edit'])->name('book.edit');
 Route::put('/update-book/{book}',[BookController::class, 'update'])->name('book-update');
-Route::get('show-{book}',[BookController::class,'show'])->name('book.show');
+Route::get('show-/{book}',[BookController::class,'show'])->name('book.show');
 
-Route::get('/destroi-book/{book}',[BookController::class,'destroy'])->name('book.destroy');
+Route::delete('/destroi-book/{book}',[BookController::class,'destroy'])->name('book.destroy');
 
 
 #criar cliente usuario
