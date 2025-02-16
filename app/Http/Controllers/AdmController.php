@@ -48,7 +48,7 @@ class AdmController
             'password' => Hash::make($request->password), // Hash da senha
         ]);
 
-        return redirect()->route('adm.index')->with('success', 'Usuário cadastrado com sucesso');
+        return redirect()->route('adm.login')->with('success', 'Usuário cadastrado com sucesso');
     }
 
     public function edit(Adm $adm)

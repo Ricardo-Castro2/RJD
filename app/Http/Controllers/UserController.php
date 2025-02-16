@@ -47,7 +47,7 @@ class UserController
             'email' => $request->email,
             'password' => $request->password,
         ]);
-        return redirect()->route('user.index')->with('success','usuario cadastrado com sucesso');
+        return redirect()->route('user.login')->with('success','usuario cadastrado com sucesso');
       
     }
     public function edit(User $user)

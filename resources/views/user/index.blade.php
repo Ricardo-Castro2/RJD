@@ -8,7 +8,7 @@
 <body>
     
     
-    <a href="{{ route('user.create') }}"> criar  </a> 
+
 
     <h1>listar usuarios</h1>
 
