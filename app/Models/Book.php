@@ -19,7 +19,8 @@ class Book extends Model
         'purchase_price', 
         'amount',
         'publisher_id',
-        'author_id'
+        'author_id',
+        'image'
     ];
     public function publisher()
     {

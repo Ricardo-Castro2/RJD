@@ -20,7 +20,7 @@
         @endforeach
     @endif
 
-    <form action="{{ route('book-update', ['book' => $book->id]) }}" method="POST">
+    <form action="{{ route('book-update', ['book' => $book->id]) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -46,7 +46,7 @@
             @endforeach
         </select><br>
 
-        <label>Autores: </label>
+        <label>Autor: </label>
         <select name="authors_id" required>
             <option value="">Selecione um autor</option>
             @foreach($authors as $author)
@@ -55,12 +55,21 @@
                 </option>
             @endforeach
         </select><br>
+
+        <!-- Campo para upload da imagem -->
+        <label>Imagem: </label>
+        <input type="file" name="image"><br>
+
+        <!-- Exibe a imagem atual, se existir -->
+        @if($book->image)
+            <p><strong>Imagem Atual:</strong></p>
+            <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->name }}" style="width:100px; height:auto;">
+        @else
+            <p>Sem imagem atual.</p>
+        @endif
         
         <button type="submit">Atualizar livro</button>
     </form>
 
 </body>
 </html>
-
-
-      
