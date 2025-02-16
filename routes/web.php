@@ -37,7 +37,7 @@ Route::post('/logout-adm', [AdmAuthController::class, 'logout'])->name('logout-a
 
 
 #Menu
-Route::get('/', [MenuController::class, 'index'])->name('menu.index');
+
 
 
 #Autores
