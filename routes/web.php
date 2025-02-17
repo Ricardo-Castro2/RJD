@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthorController; 
 use App\Http\Controllers\MenuController; 
@@ -90,7 +91,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/comprar', [SaleController::class, 'shop'])->name('sale.shop')->middleware('auth'); // Apenas a rota de compras precisa do middleware 'auth'
 Route::get('/comprar/confirm', [SaleController::class, 'confirm'])->name('sale.confirm');
 Route::post('/comprar-finalizar', [SaleController::class, 'store'])->name('sale-store');
-Route::get('/compra/{sale}/pix', [SaleController::class, 'gerarPix'])->name('sale.pix');
+Route::get('/compra/{sale}/pix', [SaleController::class, 'gerarPix'])->name('usale.pix');
 
 #venda adm
 Route::get('/venda', [AdmsaleController::class, 'index'])->name('admsale.index');
@@ -100,9 +101,3 @@ Route::get('/edit-sale/{sale}',[AdmsaleController::class,'edit'])->name('admsale
 Route::put('/update-sale/{sale}',[AdmsaleController::class, 'update'])->name('admsale-update');
 Route::get('show-{sale}',[AdmsaleController::class,'show'])->name('admsale.show');
 Route::get('/destroi-sale/{sale}',[AdmsaleController::class,'destroy'])->name('admsale.destroy');
-
-
-
-
-
-

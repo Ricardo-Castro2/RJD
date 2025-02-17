@@ -4,86 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Admin Menu</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 15px 0;
+        body {
+            padding-top: 70px; /* Adjust for fixed navbar */
         }
-        .btn {
-            display: flex;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 5px;
-            border-radius: 5px;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            height: 10%;
+        .navbar {
+            background-color: #343a40;
         }
-
-        .btn:hover {
-            background-color: #0056b3;
+        .navbar-brand, .nav-link {
+            color: white !important;
         }
-
-        
         .footer {
             position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
+            background-color: #343a40;
             color: white;
             text-align: center;
             padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
         }
-
-        /* Conteúdo principal para não ficar coberto pelo cabeçalho */
-        .content {
-            margin-top: 100px; /* Espaço para o cabeçalho */
-            margin-bottom: 60px; /* Espaço para o rodapé */
-            padding: 20px;
-            text-align: center;
+        .container {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Menu Adm</h1>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Menu Adm</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{{ route('author.index') }}">Autores</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('publisher.index') }}">Editoras</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('book.index') }}">Livros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('user.index') }}">Clientes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('adm.index') }}">Admin Usuários</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admsale.create') }}">Criar Venda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('admsale.index') }}">Vendas</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    <a href="{{ route('author.index') }}"> Autores </a> 
-<br>
-    <a href="{{ route('publisher.index') }}"> editoras </a> 
-<br>
-    <a href="{{ route('book.index') }}"> livros </a> 
-<br>
-    <a href="{{ route('user.index') }}"> clientes usuarios </a> 
-<br>
-    <a href="{{ route('adm.index') }}"> adm usuarios</a> 
-<br>
-    <a href="{{ route('admsale.create') }}"> criar venda como adm </a> 
-<br>
-    <a href="{{ route('admsale.index') }}"> vendas </a> 
-<br>
-<br>
+    <!-- Main Content -->
+    <div class="container text-center">
+        <h2>Bem-vindo ao painel administrativo</h2>
+        <form action="{{ route('logout-adm') }}" method="POST" class="mt-4">
+            @csrf
+            <button type="submit" class="btn btn-danger">Sair</button>
+        </form>
+    </div>
 
-    <form action="{{ route('logout-adm') }}" method="POST">
-        @csrf
-        <button type="submit">Sair</button>
-    </form>
+    <!-- Footer -->
+    <div class="footer">
+        <p>© 2025 Admin Panel</p>
+    </div>
 
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

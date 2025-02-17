@@ -4,37 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        }
+        .header, .footer {
+            position: fixed;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+        }
+        .header {
+            top: 0;
+        }
+        .footer {
+            bottom: 0;
+        }
+        .content {
+            margin-top: 100px;
+            margin-bottom: 60px;
+            padding: 20px;
+            text-align: center;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            border: none;
+            width: 100%;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
-    <h2>Login</h2>
+    <div class="header">
+        <h2>Login</h2>
+    </div>
 
-    <!-- Exibe mensagens de erro -->
-    @if(session('error'))
-        <div style="color: red;">
-            {{ session('error') }}
+    <div class="content">
+        <div class="login-container">
+            <!-- Exibe mensagens de erro -->
+            @if(session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+            @endif
+            
+            @if(session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
+            
+            <form action="{{ route('login_logar') }}" method="POST">
+                @csrf
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">E-mail:</label>
+                    <input type="email" class="form-control" name="email" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="password" class="form-label">Senha:</label>
+                    <input type="password" class="form-control" name="password" required>
+                </div>
+
+                <button type="submit" class="btn btn-custom">Entrar</button>
+            </form>
+
+            <p class="mt-3">Não tem uma conta? <a href="{{ route('user.create') }}">Criar uma conta</a></p>
         </div>
-    @endif
+    </div>
 
-    @if(session('success'))
-        <p style="color:#086;">
-            {{ session('success') }}
-   
-        </p>
-    @endif
+    <div class="footer">
+        <p>© 2025 - Todos os direitos reservados</p>
+    </div>
 
-    <form action="{{ route('login_logar') }}" method="POST">
-        @csrf
-        <label for="email">E-mail:</label>
-        <input type="email" name="email" required><br><br>
-
-        <label for="password">Senha:</label>
-        <input type="password" name="password" required><br><br>
-
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Não tem uma conta? <a href="{{ route('user.create') }}">Criar uma conta</a></p>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
