@@ -91,7 +91,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/comprar', [SaleController::class, 'shop'])->name('sale.shop')->middleware('auth'); // Apenas a rota de compras precisa do middleware 'auth'
 Route::get('/comprar/confirm', [SaleController::class, 'confirm'])->name('sale.confirm');
 Route::post('/comprar-finalizar', [SaleController::class, 'store'])->name('sale-store');
-Route::get('/compra/{sale}/pix', [SaleController::class, 'gerarPix'])->name('usale.pix');
+Route::get('/compra/{sale}/pix', [SaleController::class, 'gerarPix'])->name('sale.pix');
 
 #venda adm
 Route::get('/venda', [AdmsaleController::class, 'index'])->name('admsale.index');
