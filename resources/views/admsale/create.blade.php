@@ -39,6 +39,10 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
+
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        }
     </style>
 </head>
 <body>

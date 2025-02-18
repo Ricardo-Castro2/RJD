@@ -10,6 +10,7 @@
     <style>
         body {
             padding-top: 70px;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
         }
         .container {
             max-width: 100%;

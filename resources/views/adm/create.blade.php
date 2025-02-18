@@ -47,6 +47,10 @@
         .btn-custom:hover {
             background-color: #0056b3;
         }
+
+        body {
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+        }
     </style>
 </head>
 <body>

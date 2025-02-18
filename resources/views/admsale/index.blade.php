@@ -9,7 +9,7 @@
 
     <style>
         body {
-            background-color: #f8f9fa;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
         }
 
         .container {
