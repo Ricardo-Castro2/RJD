@@ -116,6 +116,9 @@ class BookController
 
     public function destroy(Book $book)
     {
+        if ($book->sale()->count() > 0) {
+            return redirect()->route('book.index')->with('error', 'Este livro não pode ser excluído pois possui vendas associadas.');
+        }
         // Apagar a imagem se existir
         if ($book->image && file_exists(public_path('storage/' . $book->image))) {
             unlink(public_path('storage/' . $book->image));

@@ -35,7 +35,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             // Redireciona para a página de compras (shop) após o login bem-sucedido
             $request->session()->regenerate();
-            return redirect()->route('sale.shop');
+            return redirect()->route('menucliente.index');
         }
 
         

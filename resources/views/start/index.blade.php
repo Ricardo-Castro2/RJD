@@ -9,7 +9,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            background: url('http://localhost/RJD/livraria.jpg') no-repeat center center fixed;
         }
         .container {
             display: flex;
@@ -17,7 +17,7 @@
         }
         .sidebar {
             width: 250px;
-            background: #343a40;
+            background: rgba(52, 58, 64, 0.9); /* Fundo semi-transparente */
             color: white;
             padding: 20px;
             min-height: 100vh;
@@ -45,6 +45,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.5); /* Fundo escuro semi-transparente para melhor legibilidade */
         }
     </style>
 </head>

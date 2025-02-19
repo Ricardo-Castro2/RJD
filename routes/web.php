@@ -13,10 +13,12 @@ use App\Http\Controllers\AdmAuthController;
 use App\Http\Controllers\AdmController; 
 use App\Http\Controllers\InicioController; 
 use App\Http\Controllers\AdmsaleController; 
+use App\Http\Controllers\MenuClienteController; 
 
                     ###Menu geral ###
 Route::get('/',[InicioController::class,'index'])->name('start.index');
 
+Route::get('/menucliente',[MenuClienteController::class,'index'])->name('menucliente.index');
 
 #criar ADM 
 Route::get('/adm',[AdmController::class,'index'])->name('adm.index');

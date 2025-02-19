@@ -35,7 +35,7 @@ class UserController
             'email' => $request->email,
             'password' => $request->password,
         ]);
-        return redirect()->route('user.index')->with('success','usuario logado com sucesso');
+        return redirect()->route('MenuCliente.index')->with('success','usuario logado com sucesso');
     }
 
     public function store(UserRequest $request)

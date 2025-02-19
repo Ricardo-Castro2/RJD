@@ -73,6 +73,8 @@
 
     <div class="container">
         <h2 class="text-center mb-4">Loja de Livros</h2>
+
+        <a href="{{ route('menucliente.index') }}" class="btn btn-secondary btn-back mt-3">Voltar</a>
         
         @if(session('success'))
             <div class="alert alert-success">
@@ -128,11 +130,7 @@
                 @endforeach
             </tbody>
         </table>
-        
-        <form action="{{ route('logout') }}" method="POST" class="mt-3 text-center">
-            @csrf
-            <button type="submit" class="btn btn-danger-custom">Sair</button>
-        </form>
+
     </div>
 
     <!-- Scripts do Bootstrap -->

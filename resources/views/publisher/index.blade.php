@@ -23,7 +23,6 @@
             color: white;
             padding: 15px 0;
             text-align: center;
-            position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;

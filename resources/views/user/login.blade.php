@@ -50,6 +50,11 @@
         .btn-custom:hover {
             background-color: #0056b3;
         }
+
+        .content-back{
+            display: flex;
+            justify-content: flex-start;
+        }
     </style>
 </head>
 <body>
@@ -73,6 +78,8 @@
             </div>
             @endif
             
+            <div class="content-back"><a href="{{ route('start.index') }}" class="btn-back">🔙 </a></div>
+            <h3 class="text-center mb-4">Entrar</h3>
             <form action="{{ route('login_logar') }}" method="POST">
                 @csrf
 

@@ -52,6 +52,7 @@
                 </div>
             @endif
 
+            <a href="{{ route('start.index') }}" class="btn-back">🔙 </a>
             <h3 class="text-center mb-4">Entrar</h3>
             <form action="{{ route('login-adm-logar') }}" method="POST">
                 @csrf
