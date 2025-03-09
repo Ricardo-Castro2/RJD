@@ -46,6 +46,7 @@
         .card {
             width: 80%;
             height: auto;
+            justify-content: space-between;
         }
 
 
