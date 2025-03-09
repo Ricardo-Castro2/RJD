@@ -93,6 +93,14 @@
             </div>
         </div>
     </div>
+    @if($book->image)
+    <div class="book-image mb-3">
+        <img src="{{ asset('storage/' . $book->image) }}" alt="{{ $book->name }}">
+    </div>
+@else
+    <p><strong>Imagem:</strong> Não disponível</p>
+@endif
+
 
     <!-- Scripts do Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

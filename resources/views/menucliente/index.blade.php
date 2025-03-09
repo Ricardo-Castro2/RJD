@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Menu</title>
-    
+    <title>Menu Cliente</title>
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            padding-top: 70px; /* Adjust for fixed navbar */
+            padding-top: 70px; /* Ajuste para a navbar fixa */
         }
         .navbar {
             background-color: #343a40;
@@ -19,7 +19,6 @@
             color: white !important;
         }
         .footer {
-            position: fixed;
             background-color: #343a40;
             color: white;
             text-align: center;
@@ -32,14 +31,29 @@
         }
         .carousel-item img {
             max-height: 400px;
-            object-fit: cover;
-            width: 100%;
+            width: auto;
+            object-fit: fill;
         }
+
+        .card-img-top {
+            width: 100%; /* A largura se ajusta ao card */
+            height: 250px; /* Ajuste a altura conforme necessário */
+            object-fit: fill; /* Garante que a imagem cubra o espaço sem distorcer */
+            border-top-left-radius: 8px; /* Bordas arredondadas superiores */
+            border-top-right-radius: 8px;
+        }
+
+        .card {
+            width: 80%;
+            height: auto;
+        }
+
+
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- Navegação -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Menu Cliente</a>
@@ -51,42 +65,42 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('sale.shop') }}">🛒 Shopping</a></li>
                     <li class="nav-item">
                         <form action="{{ route('logout') }}" method="POST" class="d-inline">
-                        @csrf
-                        <button type="submit" class="nav-link btn btn-link text-white" style="border: none; cursor: pointer;">Sair</button>
-                    </form>
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-link text-white" style="border: none; cursor: pointer;">Sair</button>
+                        </form>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Main Content -->
+    <!-- Carrossel -->
     <div class="container text-center">
-        <h2>Bem-vindo ao menu Cliente</h2>
-        
-<!-- Carousel -->
+        <h2>Bem-vindo ao Menu Cliente</h2>
+
+        <!-- Carousel -->
 <div id="carouselBanners" class="carousel slide mt-4" data-bs-ride="carousel">
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="https://m.media-amazon.com/images/I/81YOuOGFCJL._AC_SL1500_.jpg" class="d-block w-100" alt="Harry Potter">
+            <img src="https://c4.wallpaperflare.com/wallpaper/995/304/869/movies-harry-potter-1920x1080-entertainment-movies-hd-art-wallpaper-preview.jpg" class="d-block w-100" alt="Harry Potter">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Harry Potter</h5>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="https://m.media-amazon.com/images/I/91b0C2YNSrL._AC_SL1500_.jpg" class="d-block w-100" alt="Game of Thrones">
+            <img src="https://observatoriodocinema.com.br/wp-content/plugins/seox-image-magick/imagick_convert.php?width=1920&height=1080&format=.jpg&quality=91&imagick=uploads-observatoriodocinema.seox.com.br/2024/11/iron-throne-of-game-of-thrones-nf79q124fikj37px.jpg" class="d-block w-100" alt="Game of Thrones">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Game of Thrones</h5>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="https://m.media-amazon.com/images/I/91VokXkn8hL._AC_SL1500_.jpg" class="d-block w-100" alt="Percy Jackson">
+            <img src="https://images.alphacoders.com/809/809668.jpg" class="d-block w-100" alt="Percy Jackson">
             <div class="carousel-caption d-none d-md-block">
                 <h5>Percy Jackson</h5>
             </div>
         </div>
         <div class="carousel-item">
-            <img src="https://m.media-amazon.com/images/I/81aA7hEEykL._AC_SL1500_.jpg" class="d-block w-100" alt="As Crônicas de Nárnia">
+            <img src="https://wallpapers.com/images/featured/as-cronicas-de-narnia-x329acr8heedvz5y.jpg" class="d-block w-100" alt="As Crônicas de Nárnia">
             <div class="carousel-caption d-none d-md-block">
                 <h5>As Crônicas de Nárnia</h5>
             </div>
@@ -105,13 +119,41 @@
 
     </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>© 2025 </p>
     </div>
 
-    <!-- Bootstrap JS -->
+    <!-- Cartões de Livros -->
+    <div class="container mt-5">
+        <div class="row">
+            @foreach ($books as $book)
+                <div class="col-md-3">
+                    <div class="card">
+                        <!-- Exibe a imagem do livro -->
+                        @if($book->image)
+                            <img src="{{ asset('storage/' . $book->image) }}" class="card-img-top" alt="{{ $book->name }}">
+                        @endif
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $book->name }}</h5>
+                            <p class="card-text">
+                                Preço de Venda: R$ {{ number_format($book->sale_price, 2, ',', '.') }}<br>
+                                Quantidade: {{ $book->amount }}<br>
+                                Autor: {{ $book->author ? $book->author->name : 'Não especificado' }}<br>
+                                Editora: {{ $book->publisher ? $book->publisher->name : 'Não especificado' }}
+                            </p>
+                            <!-- Botão "Saiba mais" -->
+                            <a href="{{ route('book.show', ['book' => $book->id]) }}" class="btn btn-primary">Saiba mais</a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Rodapé -->
+    <div class="footer">
+        <p>© 2025 Lista de Livros</p>
+    </div>
+
+    <!-- Scripts do Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-

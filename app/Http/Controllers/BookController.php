@@ -17,9 +17,10 @@ class BookController
         return view('book.index', compact('books'));
     }
 
-    public function show(Book $book)
+    public function show($id)
     {
-        return view('book.show', ['book' => $book]);
+        $book = Book::findOrFail($id); // Recupere o livro pelo ID
+        return view('book.show', compact('book'));
     }
 
     public function create()
